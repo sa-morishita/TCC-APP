@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Layout: FC<Props> = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
   return (
     <div className="min-h-screen">

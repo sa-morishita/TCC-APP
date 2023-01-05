@@ -10,7 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, useMemo, useState } from "react";
 
-const classNamesFilter = (...classes: string[]) => {
+const classNamesFilter = (...classes: string[]): string => {
   return classes.filter(Boolean).join(" ");
 };
 
