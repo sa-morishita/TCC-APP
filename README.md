@@ -15,10 +15,15 @@ npm run dev
 
 - 構成:Next.js、Typescript、TailwindCSS
 - VS Code の推奨拡張機能:
+
   ESLint
+
   Prettier - Code formatter
+
   JavaScript and TypeScript Nightly
+
   Next.js snippets
+
   Tailwind CSS IntelliSense
 
 - Part1 のテーマ:useState、useEffect
