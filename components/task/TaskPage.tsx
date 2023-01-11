@@ -23,6 +23,11 @@ const TaskPage: FC = () => {
 
   // inputの値をtaskArrayに入れる
   const handleClick = () => {
+    if (input.trim() === "") {
+      toast.error("タスクを入力してください");
+      return;
+    }
+
     setTaskArray([...taskArray, { title: input, done: false }]);
     toast.success("タスクを追加しました");
     setInput("");
