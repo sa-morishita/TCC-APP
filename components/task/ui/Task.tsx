@@ -27,7 +27,7 @@ const Task: FC<Props> = ({ task, taskArray, setTaskArray }) => {
       return task.title !== title;
     });
     setTaskArray(newTaskArray);
-    toast.success("タスクを削除しました");
+    toast.success("タスクを削除しました。");
   };
 
   return (
