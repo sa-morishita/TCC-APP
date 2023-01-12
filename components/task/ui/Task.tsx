@@ -8,12 +8,12 @@ interface Props {
 }
 
 const Task: FC<Props> = ({ task, taskArray, setTaskArray }) => {
-  const { title, done } = task;
+  const { id, title, done } = task;
 
   // タスクを完了にする
   const handleDone = () => {
     const newTaskArray = taskArray.map((task) => {
-      if (task.title === title) {
+      if (task.id === id) {
         return { ...task, done: !done };
       }
       return task;
@@ -24,7 +24,7 @@ const Task: FC<Props> = ({ task, taskArray, setTaskArray }) => {
   // タスクを削除する
   const handleDelete = () => {
     const newTaskArray = taskArray.filter((task) => {
-      return task.title !== title;
+      return task.id !== id;
     });
     setTaskArray(newTaskArray);
     toast.success("タスクを削除しました。");
