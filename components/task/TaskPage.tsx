@@ -7,28 +7,32 @@ const TaskPage: FC = () => {
   const [taskArray, setTaskArray] = useState<any[]>([]);
 
   useEffect(() => {
-    // タスクが2つdoneになったらアラートを出す
-    const doneTaskArray = taskArray.filter((task) => {
-      return task.done;
-    });
-    if (doneTaskArray.length === 2) {
-      toast.success("お疲れ様です。タスクが2つ完了しました。");
+    if (taskArray.length > 4) {
+      toast.error("タスクが5つ以上あります。");
     }
   }, [taskArray]);
 
   // inputの値を取得してsetInputに入れる
   const handleChange = (e: any) => {
+    e.preventDefault();
     setInput(e.target.value);
+  };
+
+  const onKeyDown = (e: any) => {
+    e.preventDefault();
+    if (e.keyCode === 13) handleClick();
   };
 
   // inputの値をtaskArrayに入れる
   const handleClick = () => {
     if (input.trim() === "") {
-      toast.error("タスクを入力してください。");
-      return;
+      return toast.error("タスクを入力してください。");
     }
 
-    setTaskArray([...taskArray, { title: input, done: false }]);
+    setTaskArray([
+      ...taskArray,
+      { id: taskArray.length, title: input, done: false },
+    ]);
     toast.success("タスクを追加しました。");
     setInput("");
   };
@@ -42,6 +46,7 @@ const TaskPage: FC = () => {
             placeholder="ここに記入"
             value={input}
             onChange={handleChange}
+            onKeyDown={onKeyDown}
           />
           <button
             className="flex-shrink-0 rounded border-2 border-teal-500 p-2 text-teal-500 hover:bg-teal-500 hover:text-white"
@@ -58,7 +63,7 @@ const TaskPage: FC = () => {
                 task={task}
                 taskArray={taskArray}
                 setTaskArray={setTaskArray}
-                key={task + String(index)}
+                key={task.title + String(index)}
               />
             );
           })}
