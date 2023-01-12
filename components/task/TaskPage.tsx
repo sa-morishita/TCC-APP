@@ -36,7 +36,7 @@ const TaskPage: FC = () => {
   return (
     <div className="mt-4 flex w-full items-center justify-center">
       <div className="w-full rounded bg-white p-6 shadow lg:max-w-3xl">
-        <div className="mt-4 mb-8 flex">
+        <div className="my-8 flex">
           <input
             className="mr-4 w-full appearance-none rounded border py-2 px-3 text-gray-900 shadow"
             placeholder="ここに記入"
