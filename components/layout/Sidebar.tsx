@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { judgeSelected } from "./lib/helper";
-import { classNamesFilter } from "../../common/lib/helper";
+import { filterClassNames } from "../../common/lib/helper";
 
 const Sidebar: FC = () => {
   const { route } = useRouter();
@@ -42,7 +42,7 @@ const Sidebar: FC = () => {
               <Link
                 key={name}
                 href={href}
-                className={classNamesFilter(
+                className={filterClassNames(
                   judgeSelected(route, href)
                     ? "bg-gray-100 text-gray-900"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
@@ -50,7 +50,7 @@ const Sidebar: FC = () => {
                 )}
               >
                 <item.icon
-                  className={classNamesFilter(
+                  className={filterClassNames(
                     judgeSelected(route, href)
                       ? "text-gray-500"
                       : "text-gray-400 group-hover:text-gray-500",
