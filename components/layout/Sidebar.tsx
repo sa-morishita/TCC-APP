@@ -1,13 +1,25 @@
+import {
+  CalendarIcon,
+  FolderIcon,
+  HomeIcon,
+  UsersIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useState } from "react";
-import { convertRoute, navigationItem } from "./lib/helper";
+import { FC } from "react";
+import { judgeSelected } from "./lib/helper";
 import { classNamesFilter } from "../../common/lib/helper";
 
 const Sidebar: FC = () => {
   const { route } = useRouter();
-  const [selected, setSelected] = useState<string>(convertRoute(route));
+
+  const navigation = [
+    { name: "ダッシュボード", href: "/", icon: HomeIcon },
+    { name: "メンバー", href: "/members", icon: UsersIcon },
+    { name: "タスク", href: "/task", icon: FolderIcon },
+    { name: "ブログ", href: "/blog", icon: CalendarIcon },
+  ];
 
   return (
     <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
@@ -23,7 +35,7 @@ const Sidebar: FC = () => {
           />
         </div>
         <nav className="mt-5 flex-1 space-y-1 bg-white px-2">
-          {navigationItem.map((item) => {
+          {navigation.map((item) => {
             const { name, href } = item;
 
             return (
@@ -31,16 +43,15 @@ const Sidebar: FC = () => {
                 key={name}
                 href={href}
                 className={classNamesFilter(
-                  selected === name
+                  judgeSelected(route, href)
                     ? "bg-gray-100 text-gray-900"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                   "group flex items-center rounded-md px-2 py-2 text-sm font-medium"
                 )}
-                onClick={() => setSelected(name)}
               >
                 <item.icon
                   className={classNamesFilter(
-                    selected === name
+                    judgeSelected(route, href)
                       ? "text-gray-500"
                       : "text-gray-400 group-hover:text-gray-500",
                     "mr-3 h-6 w-6 flex-shrink-0"
