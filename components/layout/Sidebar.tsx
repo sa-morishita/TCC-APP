@@ -1,33 +1,13 @@
-import {
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
-} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { FC, useMemo, useState } from "react";
-
-const classNamesFilter = (...classes: string[]): string => {
-  return classes.filter(Boolean).join(" ");
-};
+import { useRouter } from "next/router";
+import { FC, useState } from "react";
+import { convertRoute, navigationItem } from "./lib/helper";
+import { classNamesFilter } from "../../common/lib/helper";
 
 const Sidebar: FC = () => {
-  const [selected, setSelected] = useState<string>("ダッシュボード");
-
-  const navigation = useMemo(
-    () => [
-      { name: "ダッシュボード", href: "/", icon: HomeIcon },
-      { name: "メンバー", href: "/members", icon: UsersIcon },
-      { name: "タスク", href: "/task", icon: FolderIcon },
-      { name: "ブログ", href: "/blog", icon: CalendarIcon },
-      { name: "なにか1", href: "/", icon: InboxIcon },
-      { name: "なにか2", href: "/", icon: ChartBarIcon },
-    ],
-    []
-  );
+  const { route } = useRouter();
+  const [selected, setSelected] = useState<string>(convertRoute(route));
 
   return (
     <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
@@ -43,7 +23,7 @@ const Sidebar: FC = () => {
           />
         </div>
         <nav className="mt-5 flex-1 space-y-1 bg-white px-2">
-          {navigation.map((item) => {
+          {navigationItem.map((item) => {
             const { name, href } = item;
 
             return (
