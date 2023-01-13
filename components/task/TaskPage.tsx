@@ -19,8 +19,10 @@ const TaskPage: FC = () => {
   };
 
   const onKeyDown = (e: any) => {
-    e.preventDefault();
-    if (e.keyCode === 13) handleClick();
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      handleClick();
+    }
   };
 
   // inputの値をtaskArrayに入れる
