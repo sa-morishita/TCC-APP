@@ -14,6 +14,7 @@ npm run dev
 ## Part1
 
 - 構成:Next.js、Typescript、TailwindCSS
+
 - VS Code の推奨拡張機能:
 
   ESLint
@@ -26,7 +27,6 @@ npm run dev
 
   Tailwind CSS IntelliSense
 
-- Part1 のテーマ:useState、useEffect
+- テーマ:useState、useEffect
 
-- before:2023/01/07
-- after:2023/01/16（予定）
+- 2023/01/16 と 2023/02/13 予定
