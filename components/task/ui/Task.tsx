@@ -10,11 +10,16 @@ interface Props {
 const Task: FC<Props> = ({ task, taskArray, setTaskArray }) => {
   const { id, title, done } = task;
 
+  // [ ] 完了ボタンについて、doneがfalseの時は表示を「戻す」にする
+  // [ ] {title}のpタグのスタイルについて、doneがtrueの時は「text-gray-900」の代わりに「text-green-500 line-through」にする
+  // [ ] 完了ボタンをクリックしたらtaskのdoneをtrueにする
+  // [ ] 削除ボタンをクリックしたらtaskを削除する
+
   // タスクを完了にする
   const handleDone = () => {
     const newTaskArray = taskArray.map((task) => {
       if (task.id === id) {
-        return { ...task, done: !done };
+        return task;
       }
       return task;
     });
@@ -24,7 +29,7 @@ const Task: FC<Props> = ({ task, taskArray, setTaskArray }) => {
   // タスクを削除する
   const handleDelete = () => {
     const newTaskArray = taskArray.filter((task) => {
-      return task.id !== id;
+      return task;
     });
     setTaskArray(newTaskArray);
     toast.success("タスクを削除しました。");
@@ -32,13 +37,7 @@ const Task: FC<Props> = ({ task, taskArray, setTaskArray }) => {
 
   return (
     <div className="mb-4 flex items-center">
-      <p
-        className={`w-full ${
-          done ? "text-green-500 line-through" : "text-gray-900"
-        }`}
-      >
-        {title}
-      </p>
+      <p className="w-full text-gray-900">{title}</p>
       <button
         type="button"
         onClick={() => handleDone()}
@@ -48,7 +47,7 @@ const Task: FC<Props> = ({ task, taskArray, setTaskArray }) => {
             : "border-green-500 text-green-500 hover:bg-green-500 hover:text-white"
         }`}
       >
-        {done ? "戻す" : "完了"}
+        完了
       </button>
       <button
         type="button"

@@ -6,10 +6,16 @@ const TaskPage: FC = () => {
   const [input, setInput] = useState<any>("");
   const [taskArray, setTaskArray] = useState<any[]>([]);
 
+  // [ ] {input}のテキストカラーを緑にする
+  // [ ] 入力内容：（入力した内容）と表示されるようにする
+  // [ ] inputの値が空の場合はtoast.errorを使ってエラーを表示し、追加できないようにする
+  // [ ] setTaskArrayに追加する項目に{done:false}を追加する
+  // [ ] setTaskArrayに追加完了後、inputを空にする
+  // [ ] useEffectを使って、taskが4つ以上あるとき、toast.errorを使って「タスクが4つ以上あります。」と表示する
+  // [ ] {input}の部分をコメントアウトし、taskArray.mapをアンコメントする
+
   useEffect(() => {
-    if (taskArray.length > 4) {
-      toast.error("タスクが5つ以上あります。");
-    }
+    console.log("taskArray", taskArray);
   }, [taskArray]);
 
   // inputの値を取得してsetInputに入れる
@@ -27,16 +33,8 @@ const TaskPage: FC = () => {
 
   // inputの値をtaskArrayに入れる
   const handleClick = () => {
-    if (input.trim() === "") {
-      return toast.error("タスクを入力してください。");
-    }
-
-    setTaskArray([
-      ...taskArray,
-      { id: taskArray.length, title: input, done: false },
-    ]);
+    setTaskArray([...taskArray, { id: taskArray.length, title: input }]);
     toast.success("タスクを追加しました。");
-    setInput("");
   };
 
   return (
@@ -58,8 +56,9 @@ const TaskPage: FC = () => {
             タスクを追加
           </button>
         </div>
+        <div className="font-bold text-red-500">{input}</div>
         <div>
-          {taskArray.map((task, index) => {
+          {/* {taskArray.map((task, index) => {
             return (
               <Task
                 task={task}
@@ -68,7 +67,7 @@ const TaskPage: FC = () => {
                 key={task.title + String(index)}
               />
             );
-          })}
+          })} */}
         </div>
       </div>
     </div>
