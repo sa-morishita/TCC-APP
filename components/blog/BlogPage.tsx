@@ -1,7 +1,10 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 const BlogPage: FC = () => {
-  return <div>BlogPage</div>;
+	let test = 1;
+	test2325251 = 2;
+
+	return <div>BlogPage</div>;
 };
 
 export default BlogPage;
