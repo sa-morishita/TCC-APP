@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint:precommit": "eslint './**/*.{ts,tsx}'",
-		"format": "prettier . --write",
+		"format:precommit": "prettier . --write",
 		"prepare": "husky install"
 	},
 	"dependencies": {
@@ -39,6 +39,7 @@
 		"tailwindcss": "^3.2.4"
 	},
 	"lint-staged": {
-		"./**/*.{ts,tsx}": "npm run lint:precommit"
+		"./**/*.{ts,tsx}": "npm run lint:precommit",
+		"./**/*.{js,jsx,ts,tsx,json,css,scss}": "npm run format:precommit"
 	}
 }
